@@ -24,6 +24,10 @@ class BurguerUser(AbstractUser):
     franquia = models.ForeignKey(Franquia, null = True, on_delete=models.SET_NULL)
     franqueada = models.ForeignKey(Franqueada, null = True, on_delete=models.SET_NULL)
 
+    class Meta:
+        verbose_name = 'Usuário'
+        verbose_name_plural = 'Usuários'
+
 
         #... any other fields ...
 class Produto(models.Model):
@@ -37,8 +41,7 @@ class Produto(models.Model):
 class Pedido(models.Model):
    id = models.AutoField(primary_key=True) 
    franqueada = models.ForeignKey('Franqueada', on_delete=models.CASCADE)
-   produtos = models.ManyToManyField('Produto')
-   quantidade = models.ManyToManyField('PedidoProduto', through=())
+   produtos = models.ManyToManyField('Produto', through='PedidoProduto')
    pago = models.BooleanField()   
    def __str__(self):
       return "Pedido #" + str(self.id)
@@ -46,6 +49,9 @@ class PedidoProduto(models.Model):
     pedido = models.ForeignKey('Pedido', on_delete=models.CASCADE)
     produto = models.ForeignKey('Produto', on_delete=models.CASCADE)
     quantidade = models.IntegerField()
+    class Meta:
+        verbose_name = 'Produto'
+        verbose_name_plural = 'Produtos'
 
 
 class Contrato(models.Model):
