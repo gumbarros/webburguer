@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BurguerUser, Franquia, Franqueada, Contrato, Produto, PedidoProduto, Pedido
+from .models import BurguerUser, Endereco, Franqueada, Contrato, Produto, PedidoProduto, Pedido
 from django.contrib.auth.models import User, Group
 
 admin.site.site_header = "Administração WebBurguer"
@@ -13,7 +13,7 @@ class PedidoAdmin(admin.ModelAdmin):
     
 admin.site.unregister(Group)
 admin.site.register(BurguerUser)
-admin.site.register(Franquia)
+admin.site.register(Endereco)
 admin.site.register(Franqueada)
 admin.site.register(Contrato)
 admin.site.register(Produto)
