@@ -1,5 +1,16 @@
-{% extends webburguer_app/base.html %}
-
+{% extends "base_login.html" %}
+{%block title%}
+WebBurguer
+{%endblock%}
 {%block content%}
-<h1>Pam</h1>
+<div class="jumbotron text-center">
+    <h1 class="display-3">WebBurguer</h1>
+    <img src="https://images.pexels.com/photos/2271107/pexels-photo-2271107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-responsive rounded" width="339px" height="210px" alt="Nice">
+    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident voluptatum inventore, doloremque sequi laudantium iusto nihil velit dolor? Sit, suscipit?</p>
+    <hr class="my-2">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos iusto officiis perspiciatis alias ad, reiciendis, facilis laudantium esse provident autem debitis. Dicta hic a eveniet velit, cupiditate iste porro error.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Seja um Franqueado</a>
+    </p>
+</div>
 {%endblock%}
