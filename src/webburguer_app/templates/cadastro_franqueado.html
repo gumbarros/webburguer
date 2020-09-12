@@ -1,0 +1,15 @@
+{% extends "base_login.html" %}
+{%block title%}
+Cadastro de Franqueado
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="form-group">
+       <form method="POST">{% csrf_token %}
+        {{userForm.as_p}}   
+        {{franqueadaForm.as_p}}   
+        <button type="submit" class="btn btn-success">Salvar</button>
+       </form>
+    </div>
+</div>
+{%endblock%}

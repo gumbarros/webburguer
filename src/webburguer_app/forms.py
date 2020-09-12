@@ -1,0 +1,28 @@
+from django import forms
+from django.views import generic
+from .models import Franqueada, BurguerUser
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
+
+
+class FranqueadaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(FranqueadaForm, self).__init__(*args, **kwargs)
+        self.fields['nome'].label = 'Nome da Franqueada'
+        self.fields['cnpj'].label = 'CNPJ'
+        
+
+    class Meta:
+        model = Franqueada
+        fields = ('nome', 'cnpj')
+
+
+class UserForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = 'Nome de Usuário'
+        self.fields['password1'].label = 'Senha'
+        self.fields['password2'].label = 'Confirmação de Senha'
+    class Meta:
+      model = BurguerUser
+      fields = ('username', 'password1', 'password2')

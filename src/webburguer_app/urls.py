@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    #path('cadastro_franqueado/', views.cadastroFranqueado)
+    path('cadastro_franqueado/', views.cadastroFranqueado)
 ]

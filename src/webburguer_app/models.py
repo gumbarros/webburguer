@@ -46,7 +46,7 @@ class Endereco(models.Model):
 class Franqueada(models.Model):
     nome = models.CharField(max_length=45)
     cnpj = models.CharField(max_length=11)
-    endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
+    endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,blank=True, null=True)
 
     def __str__(self):
         return self.nome
