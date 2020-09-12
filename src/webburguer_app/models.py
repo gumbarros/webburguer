@@ -37,7 +37,7 @@ class Endereco(models.Model):
     bairro = models.CharField(max_length=25)
     cidade = models.CharField(max_length=25)
     cep = models.CharField(max_length=8)
-    uf = models.CharField(max_length=2, choices=ESTADOS, default='rj')
+    uf = models.CharField(max_length=2, choices=ESTADOS, default='sp')
 
     class Meta:
         verbose_name = 'Endereço'
