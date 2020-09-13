@@ -10,7 +10,8 @@ class FranqueadaForm(forms.ModelForm):
         super(FranqueadaForm, self).__init__(*args, **kwargs)
         self.fields['nome'].label = 'Nome da Franqueada'
         self.fields['cnpj'].label = 'CNPJ'
-        
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = Franqueada
@@ -23,6 +24,9 @@ class UserForm(UserCreationForm):
         self.fields['username'].label = 'Nome de Usuário'
         self.fields['password1'].label = 'Senha'
         self.fields['password2'].label = 'Confirmação de Senha'
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-control'
+            field.field.help_text = None
     class Meta:
       model = BurguerUser
       fields = ('username', 'password1', 'password2')

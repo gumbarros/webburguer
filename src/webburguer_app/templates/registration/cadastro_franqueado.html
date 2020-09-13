@@ -1,0 +1,22 @@
+{% extends "registration/base_login.html" %}
+{%block title%}
+Cadastro de Franqueado
+{%endblock%}
+{%block content%}
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="jumbotron h-100 justify-content-center">
+                <div class="form-group text-center">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{userForm.as_p}}
+                        {{franqueadaForm.as_p}}
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

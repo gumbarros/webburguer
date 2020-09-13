@@ -21,4 +21,4 @@ def cadastroFranqueado(request):
     else:
         franqueadaForm = FranqueadaForm()
         userForm = UserForm()
-        return render(request, 'cadastro_franqueado.html', {'franqueadaForm':franqueadaForm, 'userForm':userForm})    
+        return render(request, 'registration/cadastro_franqueado.html', {'franqueadaForm':franqueadaForm, 'userForm':userForm})    
