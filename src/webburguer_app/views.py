@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from .forms import FranqueadaForm, UserForm
 from webburguer_app.models import Franqueada, BurguerUser, Produto, Pedido, PedidoProduto
@@ -21,4 +23,14 @@ def cadastroFranqueado(request):
     else:
         franqueadaForm = FranqueadaForm()
         userForm = UserForm()
-        return render(request, 'registration/cadastro_franqueado.html', {'franqueadaForm':franqueadaForm, 'userForm':userForm})    
+        return render(request, 'registration/cadastro_franqueado.html', {'franqueadaForm':franqueadaForm, 'userForm':userForm})
+
+@login_required
+def home(request):
+    return render(request, 'home.html', {'franqueada': request.user.franqueada})
+
+def handler404(request):
+    return render(request, '404.html')
+
+def handler500(request):
+    return render(request, '505.html')

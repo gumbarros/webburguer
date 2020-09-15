@@ -53,7 +53,7 @@ class Franqueada(models.Model):
 
 
 class BurguerUser(AbstractUser):
-    franqueada = models.ForeignKey(Franqueada, null = True, on_delete=models.SET_NULL)
+    franqueada = models.ForeignKey(Franqueada, null = True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Usuário'

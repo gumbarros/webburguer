@@ -108,5 +108,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    "webburguer_app/static/css"
+]
 LOGIN_REDIRECT_URL = '/home'
-URL_API = 'https://viacep.com.br/ws/129/json/'
+#URL_API = 'https://viacep.com.br/ws/129/json/'

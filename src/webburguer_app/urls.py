@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('auth/', include('django.contrib.auth.urls')),
-    path('auth/cadastro_franqueado/', views.cadastroFranqueado)
+    path('auth/cadastro_franqueado/', views.cadastroFranqueado),
+    path('home/', views.home),
 ]
