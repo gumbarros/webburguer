@@ -12,8 +12,8 @@
     <style>
       body,html {
         height: 90%;
+
       }
-      
     </style>
     {%block style%}
     {%endblock%}
@@ -26,11 +26,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/"><span style="font-size: 30px;">WebBurguer</span></a>
+            <a class="nav-link" href="/home"><span style="font-size: 30px;">WebBurguer</span></a>
           </li>
         </ul>
+        <nav class="nav justify-content-center m-1">
+          <a name="" id="" class="btn btn-secondary m-2" href="/cadastro_pedido" role="button">Pedidos</a>
+          <a name="" id="" class="btn btn-secondary m-2" href="#" role="button">Contratos</a>
+          <a name="" id="" class="btn btn-secondary m-2" href="#" role="button">Funcionários</a>
+        </nav>
         <i class="fas fa-user-circle fa-2x" style="color: white"></i>
         <h3 style="color: white;">&nbsp{{ user.get_username}}</h3>
       </div>

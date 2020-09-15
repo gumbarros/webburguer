@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
-from .forms import FranqueadaForm, UserForm
+from .forms import FranqueadaForm, UserForm, PedidoForm
 from webburguer_app.models import Franqueada, BurguerUser, Produto, Pedido, PedidoProduto
 
 def index(request):
@@ -29,8 +29,18 @@ def cadastroFranqueado(request):
 def home(request):
     return render(request, 'home.html', {'franqueada': request.user.franqueada})
 
-def handler404(request):
-    return render(request, '404.html')
+@login_required
+def cadastroPedido(request):
+    if request.method == "POST":
+        pedidoForm = PedidoForm(request.POST)
+        if pedidoForm.is_valid():
+            pedido = Pedido(id=0,franqueada=request.user.franqueada, pago=False, produtos= pedidoForm.save())
+            pedido.save()
+            return redirect('home/')
+    else:
+        pedidoForm = PedidoForm()
+        return render(request, 'cadastro_pedido.html', {'pedidoForm':pedidoForm})
 
-def handler500(request):
-    return render(request, '505.html')
+@login_required
+def pedidos(request):
+    return render(request, 'pedidos.html', {'franqueada': request.user.franqueada})

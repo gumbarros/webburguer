@@ -71,8 +71,8 @@ class Produto(models.Model):
 class Pedido(models.Model):
    id = models.AutoField(primary_key=True) 
    franqueada = models.ForeignKey('Franqueada', on_delete=models.CASCADE)
-   produtos = models.ManyToManyField('Produto', through='PedidoProduto')
-   pago = models.BooleanField()   
+   produtos = models.ManyToManyField('Produto', through='PedidoProduto', null=True)
+   pago = models.BooleanField(null = True)   
    def __str__(self):
       return "Pedido #" + str(self.id)
 class PedidoProduto(models.Model):

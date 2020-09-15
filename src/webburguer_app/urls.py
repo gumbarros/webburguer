@@ -7,4 +7,6 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/cadastro_franqueado/', views.cadastroFranqueado),
     path('home/', views.home),
+    path('pedidos/', views.pedidos),
+    path('cadastro_pedido/', views.cadastroPedido)
 ]
