@@ -13,9 +13,28 @@ Contratos
                 </div>
                 <ul class="list-group list-group-flush">
                     {% for contrato in contratos %}
-                    <li class="list-group-item">
-                        {{contrato.nome}} - R${{contrato.valor}}
-                    </li>
+                    <!--Modal do meu contrato-->
+                    <div class="modal fade" id="id{{contrato.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{contrato.nome}} - R${{contrato.valor}}</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{contrato.descricao}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="#close{{contrato.id}}" onclick="closeModal({{contrato.id}})">Fechar</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                   <!--Cabeçalho do Contrato-->
+                   <a data-toggle="modal" data-target="#id{{contrato.id}}">
+                        <li class="list-group-item">
+                            {{contrato.nome}} - R${{contrato.valor}}
+                        </li>
+                    </a>
                     {% endfor %}
                 </ul>
             </div>
