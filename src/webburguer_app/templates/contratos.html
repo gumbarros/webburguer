@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{%block title%}
+Contratos
+{%endblock%}
+{%block content%}
+<div class="container h-100">
+    <div class="row align-items-center h-100 m-10">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Meus Contratos</h4>
+                    <p class="card-text">Lista de contratos de sua franqueada</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for contrato in contratos %}
+                    <li class="list-group-item">
+                        {{contrato.nome}} - R${{contrato.valor}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-12 text-center">
+            <a href="/cadastro_contrato" type="button" class="btn btn-primary text-center">Adicionar Contrato</a>
+        </div>
+    </div>
+</div>
+{%endblock%}

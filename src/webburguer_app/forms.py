@@ -1,6 +1,6 @@
 from django import forms
 from django.views import generic
-from .models import Franqueada, BurguerUser, Pedido, Produto
+from .models import Franqueada, BurguerUser, Pedido, Produto, Contrato
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 
@@ -30,6 +30,18 @@ class PedidoForm(forms.ModelForm):
         model = Pedido
         fields = ('produto','quantidade')
 
+class ContratoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ContratoForm, self).__init__(*args, **kwargs)
+        self.fields['nome'].label = 'Nome'
+        self.fields['descricao'].label = 'Descrição'
+        self.fields['valor'].label = 'Valor (R$)'
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = Contrato
+        fields = ('nome','descricao','valor')
 class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)

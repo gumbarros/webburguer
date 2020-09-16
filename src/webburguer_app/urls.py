@@ -9,5 +9,7 @@ urlpatterns = [
     path('home/', views.home),
     path('pedidos/', views.pedidos),
     path('cadastro_pedido/', views.cadastroPedido),
-    path('pagar_pedido/<int:id>/', views.pagarPedido)
+    path('pagar_pedido/<int:id>/', views.pagarPedido),
+    path('contratos/', views.contratos),
+    path('cadastro_contrato', views.cadastroContrato)
 ]

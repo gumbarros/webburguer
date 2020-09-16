@@ -82,9 +82,9 @@ class Pedido(models.Model):
 
 class Contrato(models.Model):
     nome = models.CharField(max_length=45)
-    descricao = models.CharField(max_length=200)
+    descricao = models.TextField(max_length=200)
     valor = models.FloatField()
-    franqueada = models.ForeignKey(Franqueada, on_delete=models.CASCADE)
+    franqueada = models.ForeignKey(Franqueada, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.nome
