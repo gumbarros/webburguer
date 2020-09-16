@@ -27,7 +27,12 @@ def cadastroFranqueado(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html', {'franqueada': request.user.franqueada, 'pedidos':Pedido.objects.all().filter(franqueada=request.user.franqueada).count()})
+    return render(request, 'home.html', {
+        'franqueada': request.user.franqueada,
+        'pedidos':Pedido.objects.all().filter(franqueada=request.user.franqueada).count(),
+        'produtos': Produto.objects.all().count(),
+        'contratos': Contrato.objects.all().count()
+        })
 
 @login_required
 def cadastroPedido(request):

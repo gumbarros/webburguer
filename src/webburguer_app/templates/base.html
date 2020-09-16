@@ -34,10 +34,10 @@
         <nav class="nav justify-content-center m-1">
           <a name="" id="" class="btn btn-secondary m-2" href="/pedidos" role="button">Pedidos</a>
           <a name="" id="" class="btn btn-secondary m-2" href="/contratos" role="button">Contratos</a>
-          <a name="" id="" class="btn btn-secondary m-2" href="#" role="button">Funcionários</a>
+          <a name="" id="" class="btn btn-secondary m-2" href="#" role="button">Produtos</a>
         </nav>
         <i class="fas fa-user-circle fa-2x" style="color: white"></i>
-        <h3 style="color: white;">&nbsp{{ user.get_username}}</h3>
+        <h5 style="color: white;">&nbsp{{ user.get_username}} | <a href="/auth/logout?next=/">Logout</a></h5>
       </div>
     </nav>
     {% block content %}
