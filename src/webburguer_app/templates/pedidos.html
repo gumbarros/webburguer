@@ -13,22 +13,47 @@ Pedidos
                 </div>
                 <ul class="list-group list-group-flush">
                     {% for pedido in pedidos %}
-                    <li class="list-group-item">
-                        <div class="row d-flex justify-content-between">
-                            {%if pedido.pago%}
-                            <div>
-                                <span class="badge badge-success">Pago</span> {{pedido}} - R${{pedido.total}}
+
+                    <!--Modal do meu pedido-->
+                    <div class="modal fade" id="id{{pedido.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{pedido}}</h5>
                             </div>
-                            {%else%}
-                            <div>
-                                <span class="badge badge-danger">Pendente</span> {{pedido}} - R${{pedido.total}}
+                            <div class="modal-body">
+                                <img src="/webburguer_app/media/{{pedido.produto.imagem}}" width="100px" height="100px"alt="{{pedido.produto.nome}}" class="img-thumbnail rounded">
+                                <p>Produto - {{pedido.produto}}</p>
+                                <p>Preço do Produto - R$ {{pedido.produto.preco}}</p>
+                                <p>Quantidade - {{pedido.quantidade}}</p>
+                                <p>Total - R$ {{pedido.total}}</p>
                             </div>
-                            <div>
-                                <a href="/pagar_pedido/{{pedido.pk}}" class="btn btn-primary">Pagar</a>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="#close{{pedido.id}}" onclick="closeModal({{pedido.id}})">Fechar</button>
                             </div>
-                            {%endif%}
+                            </div>
                         </div>
-                    </li>
+                    </div>
+
+                    <!--Cabeçalho do Pedido-->
+                    <a data-toggle="modal" data-target="#id{{pedido.id}}">
+                        <li class="list-group-item">
+                            <div class="row d-flex justify-content-between">
+                                {%if pedido.pago%}
+                                <div>
+                                    <span class="badge badge-success">Pago</span> {{pedido}} - R${{pedido.total}}
+                                </div>
+                                {%else%}
+                                <div>
+                                    <span class="badge badge-danger">Pendente</span> {{pedido}} - R${{pedido.total}}
+                                </div>
+                                <div>
+                                    <a href="/pagar_pedido/{{pedido.pk}}" class="btn btn-primary">Pagar</a>
+                                </div>
+                                {%endif%}
+                            </div>
+                        </li>
+                    </a>
                     {% endfor %}
                 </ul>
             </div>
