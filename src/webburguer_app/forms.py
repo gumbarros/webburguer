@@ -1,6 +1,6 @@
 from django import forms
 from django.views import generic
-from .models import Franqueada, BurguerUser, Pedido, PedidoProduto
+from .models import Franqueada, BurguerUser, Pedido, Produto
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 
@@ -22,17 +22,17 @@ class PedidoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PedidoForm, self).__init__(*args, **kwargs)
         self.fields['produto'].label = 'Produto'
-        self.fields['quantidade'].label = 'Produto'
+        self.fields['quantidade'].label = 'Quantidade'
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
-        model = PedidoProduto
-        fields = ('produto','quantidade',)
+        model = Pedido
+        fields = ('produto','quantidade')
 
 class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
-        super(UserCreationForm, self).__init__(*args, **kwargs)
+        super(UserForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = 'Nome de Usuário'
         self.fields['password1'].label = 'Senha'
         self.fields['password2'].label = 'Confirmação de Senha'

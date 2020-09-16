@@ -59,8 +59,6 @@ class BurguerUser(AbstractUser):
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
 
-
-        #... any other fields ...
 class Produto(models.Model):
     nome = models.CharField(max_length=45)
     preco = models.FloatField()
@@ -69,19 +67,12 @@ class Produto(models.Model):
         return self.nome
 
 class Pedido(models.Model):
-   id = models.AutoField(primary_key=True) 
    franqueada = models.ForeignKey('Franqueada', on_delete=models.CASCADE)
-   produtos = models.ManyToManyField('Produto', through='PedidoProduto', null=True)
+   produto = models.ForeignKey('Produto', on_delete=models.CASCADE, null=False)
+   quantidade = models.IntegerField(null=False)
    pago = models.BooleanField(null = True)   
    def __str__(self):
-      return "Pedido #" + str(self.id)
-class PedidoProduto(models.Model):
-    pedido = models.ForeignKey('Pedido', on_delete=models.CASCADE)
-    produto = models.ForeignKey('Produto', on_delete=models.CASCADE)
-    quantidade = models.IntegerField()
-    class Meta:
-        verbose_name = 'Produto'
-        verbose_name_plural = 'Produtos'
+      return "Pedido #" #+ str(self.pk)
 
 
 class Contrato(models.Model):

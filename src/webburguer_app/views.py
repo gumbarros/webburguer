@@ -5,7 +5,7 @@ from django.template import loader
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from .forms import FranqueadaForm, UserForm, PedidoForm
-from webburguer_app.models import Franqueada, BurguerUser, Produto, Pedido, PedidoProduto
+from webburguer_app.models import Franqueada, BurguerUser, Produto, Pedido
 
 def index(request):
     return render(request, 'index.html')
@@ -34,8 +34,8 @@ def cadastroPedido(request):
     if request.method == "POST":
         pedidoForm = PedidoForm(request.POST)
         if pedidoForm.is_valid():
-            pedido = Pedido(id=0,franqueada=request.user.franqueada, pago=False, produtos= pedidoForm.save())
-            pedido.save()
+            pedidoForm.franqueada = request.user.franqueada
+            pedidoForm.save()
             return redirect('home/')
     else:
         pedidoForm = PedidoForm()
