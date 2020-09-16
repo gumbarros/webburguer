@@ -4,8 +4,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
-from .forms import FranqueadaForm, UserForm, PedidoForm, ContratoForm
+from .forms import FranqueadaForm, UserForm, PedidoForm, ContratoForm, ProdutoForm
 from webburguer_app.models import Franqueada, BurguerUser, Produto, Pedido, Contrato
+from django.conf.urls.static import static
 
 def index(request):
     return render(request, 'index.html')
@@ -49,6 +50,20 @@ def cadastroPedido(request):
         return render(request, 'cadastro_pedido.html', {'pedidoForm':pedidoForm})
 
 @login_required
+def cadastroProduto(request):
+    if request.method == "POST":
+        produtoForm = ProdutoForm(request.POST, request.FILES)
+        print(produtoForm.errors)
+        if produtoForm.is_valid():
+            produtoForm.save()
+            return redirect('/produtos/')
+        else:
+            return redirect('/produtos/')  
+    else:
+        produtoForm = ProdutoForm()
+        return render(request, 'cadastro_produto.html', {'produtoForm':produtoForm})
+
+@login_required
 def cadastroContrato(request):
     if request.method == "POST":
         contratoForm = ContratoForm(request.POST)
@@ -73,5 +88,9 @@ def pedidos(request):
     return render(request, 'pedidos.html', {'pedidos': Pedido.objects.all().filter(franqueada=request.user.franqueada)})
 
 @login_required
+def produtos(request):
+    return render(request, 'produtos.html', {'produtos': Produto.objects.all()})
+
+@login_required
 def contratos(request):
-    return render(request, 'contratos.html', {'contratos': Contrato.objects.all().filter(franqueada=request.user.franqueada)})    
+    return render(request, 'contratos.html', {'contratos': Contrato.objects.all().filter(franqueada=request.user.franqueada)})

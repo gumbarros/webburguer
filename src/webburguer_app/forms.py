@@ -42,6 +42,20 @@ class ContratoForm(forms.ModelForm):
     class Meta:
         model = Contrato
         fields = ('nome','descricao','valor')
+
+class ProdutoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProdutoForm, self).__init__(*args, **kwargs)
+        self.fields['nome'].label = 'Nome'
+        self.fields['preco'].label = 'Preço'
+        self.fields['imagem'].label = 'Imagem'
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-control'
+    
+    class Meta:
+        model = Produto
+        fields = ('nome','preco', 'imagem')
+
 class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)

@@ -60,9 +60,10 @@ class BurguerUser(AbstractUser):
         verbose_name_plural = 'Usuários'
 
 class Produto(models.Model):
-    nome = models.CharField(max_length=45)
-    preco = models.FloatField()
-
+    nome = models.CharField(max_length=45, null=True)
+    preco = models.FloatField(null=True)
+    imagem = models.ImageField(upload_to='images/', null=True)
+    
     def __str__(self):
         return self.nome
 
