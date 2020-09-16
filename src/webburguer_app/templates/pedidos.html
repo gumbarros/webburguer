@@ -4,49 +4,37 @@ WebBurguer
 {%endblock%}
 {%block content%}
 <div class="container h-100">
-    <div class="row align-items-center h-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="container-fluid">
-                        <div class="jumbotron">
-                            <h1 class="display-3">{{ franqueada }}</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quidem ullam, corrupti suscipit quia alias quam atque nihil labore ex?</p>
-                            <hr class="my-2">
-                            <div class="container-fluid">
-                                <div class="row p-4">
-                                    <div class="col-sm-12">
-                                        <div class="card">
-                                            <div class="card-body bg-light">
-                                                <h3 class="card-title text-center">Pedidos Confirmados</h3>
-                                                <h4 class="card-Quantidade text-center">Quantidade</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row p-4">
-                                    <div class="col-sm-6">
-                                        <div class="card">
-                                            <div class="card-body bg-light">
-                                                <h3 class="card-title">Contratos</h3>
-                                                <h4 class="card-Quantidade">Quantidade</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="card">
-                                            <div class="card-body bg-light">
-                                                <h3 class="card-title">Funcionários</h3>
-                                                <h4 class="card-Quantidade">Quantidade</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row align-items-center h-100 m-10">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Meus Pedidos</h4>
+                    <p class="card-text">Acompanhe aqui os pedidos de sua franqueada</p>
                 </div>
+                <ul class="list-group list-group-flush">
+                    {% for pedido in pedidos %}
+                    <li class="list-group-item">
+                        <div class="row d-flex justify-content-between">
+                            {%if pedido.pago%}
+                            <div>
+                                <span class="badge badge-success">Pago</span> {{pedido}} - R${{pedido.total}}
+                            </div>
+                            {%else%}
+                            <div>
+                                <span class="badge badge-danger">Pendente</span> {{pedido}} - R${{pedido.total}}
+                            </div>
+                            <div>
+                                <a href="/pagar_pedido/{{pedido.pk}}" class="btn btn-primary">Pagar</a>
+                            </div>
+                            {%endif%}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
+        </div>
+        <div class="col-sm-12 text-center">
+            <a href="/cadastro_pedido" type="button" class="btn btn-primary text-center">Adicionar Pedido</a>
         </div>
     </div>
 </div>

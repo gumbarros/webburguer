@@ -8,5 +8,6 @@ urlpatterns = [
     path('auth/cadastro_franqueado/', views.cadastroFranqueado),
     path('home/', views.home),
     path('pedidos/', views.pedidos),
-    path('cadastro_pedido/', views.cadastroPedido)
+    path('cadastro_pedido/', views.cadastroPedido),
+    path('pagar_pedido/<int:id>/', views.pagarPedido)
 ]

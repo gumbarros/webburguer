@@ -67,12 +67,17 @@ class Produto(models.Model):
         return self.nome
 
 class Pedido(models.Model):
-   franqueada = models.ForeignKey('Franqueada', on_delete=models.CASCADE)
-   produto = models.ForeignKey('Produto', on_delete=models.CASCADE, null=False)
-   quantidade = models.IntegerField(null=False)
-   pago = models.BooleanField(null = True)   
+   franqueada = models.ForeignKey('Franqueada', on_delete=models.CASCADE, null=True)
+   produto = models.ForeignKey('Produto', on_delete=models.CASCADE, null=True)
+   quantidade = models.IntegerField(null=True)
+   pago = models.BooleanField(null = True)
+
+   def total(self):
+       return (self.produto.preco * self.quantidade)
+
    def __str__(self):
-      return "Pedido #" #+ str(self.pk)
+      return "Pedido #" + str(self.pk)
+
 
 
 class Contrato(models.Model):

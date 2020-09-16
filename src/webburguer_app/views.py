@@ -27,20 +27,29 @@ def cadastroFranqueado(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html', {'franqueada': request.user.franqueada})
+    return render(request, 'home.html', {'franqueada': request.user.franqueada, 'pedidos':Pedido.objects.all().filter(franqueada=request.user.franqueada).count()})
 
 @login_required
 def cadastroPedido(request):
     if request.method == "POST":
         pedidoForm = PedidoForm(request.POST)
         if pedidoForm.is_valid():
-            pedidoForm.franqueada = request.user.franqueada
-            pedidoForm.save()
-            return redirect('home/')
+            pedido = pedidoForm.save()
+            pedido.pago = False
+            pedido.franqueada = request.user.franqueada
+            pedido.save()
+            return redirect('/pedidos/')
     else:
         pedidoForm = PedidoForm()
         return render(request, 'cadastro_pedido.html', {'pedidoForm':pedidoForm})
 
 @login_required
+def pagarPedido(request, id):
+    pedido = Pedido.objects.get(id=id)
+    pedido.pago = True
+    pedido.save()
+    return redirect('/pedidos/')
+
+@login_required
 def pedidos(request):
-    return render(request, 'pedidos.html', {'franqueada': request.user.franqueada})
+    return render(request, 'pedidos.html', {'pedidos': Pedido.objects.all().filter(franqueada=request.user.franqueada)})
